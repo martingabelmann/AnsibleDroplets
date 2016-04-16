@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd /srv/docker/ansible/
+ansible-playbook local.yml --tags=packages -c local
