@@ -1,5 +1,8 @@
 ---
 
+- name: update all installed packages
+  apt: update_cache=yes upgrade=safe
+
 - name: install common packages
   apt: 
     update_cache=yes
