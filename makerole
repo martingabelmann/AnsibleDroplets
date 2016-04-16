@@ -1,0 +1,23 @@
+#!/bin/bash
+
+if [ "$1" = "" ]; then
+    echo -e "Usage: makerole <rolename>"
+    exit
+fi
+
+if [ ! -d roles/$1 ]; then
+    echo "creating new role $1" 
+else
+    echo "role already exists"
+    exit
+fi
+
+mkdir -p roles/$1/tasks/
+mkdir -p roles/$1/meta/
+
+touch roles/$1/tasks/main.yml
+touch roles/$1/meta/main.yml
+
+echo "---" >> roles/$1/tasks/main.yml
+
+echo -e "---\n\ndependencies:\n    - handler" >> roles/$1/meta/main.yml
