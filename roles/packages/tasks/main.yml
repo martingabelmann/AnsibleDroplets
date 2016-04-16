@@ -10,3 +10,6 @@
     install_recommends=no
     name={{item}}
   with_items: "{{ common_packages }}"
+
+- name: cronjob to run packages role
+  copy: src=packages.cron dest=/etc/cron.daily/ansible-packages mode="o=rwx,g=rx,o=rx" owner=root group=root 

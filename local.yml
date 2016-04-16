@@ -1,10 +1,16 @@
 ---
 
-- name: common roles
+- name: install/upgrade packages
   hosts: all
   roles:
     - packages
+  tags:
+    - packages
+
+- name: backup all docker mounts
+  hosts: all
+  roles:
     - backup-docker-volumes
   tags:
-    - common
+    - docker-backup
 
