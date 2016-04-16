@@ -14,3 +14,11 @@
   tags:
     - docker-backup
 
+- name: fresh install
+  hosts: all
+  roles:
+    - backup-docker-volumes
+    - packages
+  tags:
+    - install
+
