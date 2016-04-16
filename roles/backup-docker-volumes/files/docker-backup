@@ -1,0 +1,13 @@
+#!/bin/bash
+
+BACKUPFILE=backup-$(date +%y%m%d-%H%M).tar.gz
+BACKUPDIR=/srv/backups
+
+mkdir -p "$BACKUPDIR"
+cd "$BACKUPDIR"
+
+tar -cvpzf "$FNAME" --one-file-system --exclude=/srv/docker/owncloud9/data/backups /srv/docker >> /var/log/docker-backup.log 2>&1
+
+echo "removing old backups" >> /var/log/docker-backup.log 2>&1
+find backup*.tar.gz -mtime +1 -exec rm {} \; >> /var/log/docker-backup.log 2>&1
+

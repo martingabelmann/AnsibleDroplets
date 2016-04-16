@@ -1,9 +1,10 @@
-
+---
 
 - name: common roles
   hosts: all
   roles:
     - packages
-  ags:
+    - backup-docker-volumes
+  tags:
     - common
 

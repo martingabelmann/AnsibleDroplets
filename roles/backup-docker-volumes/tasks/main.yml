@@ -1,0 +1,5 @@
+---
+
+- name: copy docker backup script
+  copy: src=docker-backup dest=/etc/cron.daily/docker-backup mode="o=rwx,g=rx,o=rx" owner=root group=root
+
