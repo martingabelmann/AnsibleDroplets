@@ -1,0 +1,11 @@
+---
+
+common_packages:
+  - vim
+  - htop
+  - rsync
+  - zsh
+  - tmux
+  - git
+  - docker
+

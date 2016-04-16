@@ -1,0 +1,9 @@
+---
+
+- name: install common packages
+  apt: 
+    update_cache=yes
+    state=present
+    install_recommends=no
+    name={{item}}
+  with_items: "{{ common_packages }}"
