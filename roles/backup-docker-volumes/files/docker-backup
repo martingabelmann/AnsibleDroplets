@@ -5,8 +5,8 @@ BACKUPDIR=/srv/backups
 
 mkdir -p "$BACKUPDIR"
 cd "$BACKUPDIR"
-
-tar -cvpzf "$FNAME" --ignore-command-error --one-file-system --exclude=/srv/docker/owncloud9/data/backups /srv/docker >> /var/log/docker-backup.log 2>&1
+echo "creating $BACKUPFILE"  >> /var/log/docker-backup.log 2>&1
+tar -cvpzf "$BACKUPFILE" --ignore-command-error --one-file-system --exclude=/srv/docker/owncloud9/data/backups /srv/docker >> /var/log/docker-backup.log 2>&1
 
 echo "removing old backups" >> /var/log/docker-backup.log 2>&1
 find backup*.tar.gz -mtime +1 -exec rm {} \; >> /var/log/docker-backup.log 2>&1
