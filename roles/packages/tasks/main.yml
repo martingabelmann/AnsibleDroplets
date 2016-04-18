@@ -1,8 +1,5 @@
 ---
 
-- name: update all installed packages
-  apt: update_cache=yes upgrade=safe
-
 - name: install common packages
   apt: 
     update_cache=yes
@@ -11,5 +8,8 @@
     name={{item}}
   with_items: "{{ common_packages }}"
 
-- name: cronjob to run packages role
-  copy: src=packages.cron dest=/etc/cron.daily/ansible-packages mode="o=rwx,g=rx,o=rx" owner=root group=root 
+- name: cronjob to run updates
+  copy: src=updates.cron dest=/etc/cron.hourly/autoupdate mode="o=rwx,g=rx,o=rx" owner=root group=root 
+
+- name: logrotate for update cron
+  copy: src=updates.logrotate dest=/etc/logrotate.d/autoupdate mode="o=rw,g=r,o=r" owner=root group=root

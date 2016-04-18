@@ -1,0 +1,6 @@
+#!/bin/bash
+
+apt-get update
+echo "$(date): " >> /var/log/autoupdate.log 2>&1
+apt-get upgrade -y >> /var/log/autoupdate.log 2>&1
+
