@@ -1,0 +1,44 @@
+---
+
+- name: install ufw and fail2ban
+  apt: 
+    update_cache=yes
+    state=present
+    install_recommends=no
+    name={{ item }}
+  with_items:
+    - ufw
+    - fail2ban
+
+- name: set ufw rules
+  ufw: 
+    rule={{ item.rule|default("allow") }} 
+    src={{ item.src|default("any") }}
+    port={{ item.port }}
+    proto={{ item.porto|default("tcp") }}
+    log={{ item.log|default("yes") }}
+  with_items: "{{ufw_rules}}"
+
+- name: enable ufw
+  ufw: state=enabled policy=deny logging=low
+
+# workaround since create=yes is broken
+- name: touch fail2ban sshd
+  file: path=/etc/fail2ban/jail.d/sshd.local state=touch
+
+- name: write fail2ban sshd jail
+  blockinfile:  
+    create: yes # this is broken until ansible 2.0.2
+    dest: /etc/fail2ban/jail.d/sshd.local
+    marker: "# {mark} ANSIBLE MANAGED BLOCK"
+    content: |
+        [sshd]
+        enabled = true
+        port    = ssh
+        filter  = sshd
+        logpath = %(sshd_log)s
+        maxretry = 2
+  notify: restart fail2ban
+
+- name: start/enable fail2ban
+  service: name=fail2ban state=started enabled=yes

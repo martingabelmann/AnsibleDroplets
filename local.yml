@@ -1,24 +1,10 @@
 ---
 
-- name: install/upgrade packages
-  hosts: all
-  roles:
-    - packages
-  tags:
-    - packages
-
-- name: backup all docker mounts
-  hosts: all
-  roles:
-    - backup-docker-volumes
-  tags:
-    - docker-backup
-
 - name: fresh install
   hosts: all
   roles:
-    - backup-docker-volumes
-    - packages
+    - { role: backup-docker-volumes, tags: ['backup'] }
+    - { role:  packages, tags: ['packages'] }
+    - { role: security, tags: ['security'] }
   tags:
     - install
-
