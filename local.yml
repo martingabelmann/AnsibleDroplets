@@ -4,7 +4,8 @@
   hosts: all
   roles:
     - { role: backup-docker-volumes, tags: ['backup'] }
-    - { role:  packages, tags: ['packages'] }
+    - { role: packages, tags: ['packages'] }
     - { role: security, tags: ['security'] }
+    - { role: sshd, tags: ['sshd'] }
   tags:
     - install

@@ -1,0 +1,6 @@
+---
+
+- name: copy sshd config
+  copy: src=sshd_config dest=/etc/ssh/sshd_config
+  notify:
+    - restart sshd
