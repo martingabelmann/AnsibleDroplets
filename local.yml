@@ -7,5 +7,6 @@
     - { role: packages, tags: ['packages'] }
     - { role: security, tags: ['security'] }
     - { role: sshd, tags: ['sshd'] }
+    - { role: docker, tags: ['docker'] }
   tags:
     - install

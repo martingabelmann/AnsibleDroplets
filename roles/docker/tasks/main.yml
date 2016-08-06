@@ -1,0 +1,16 @@
+---
+
+- name: add gpg key for official docker repo
+  apt_key: keyserver=hkp://p80.pool.sks-keyservers.net:80 id=58118E89F3A912897C070ADBF76221572C52609D
+
+- name: add docker repo
+  apt_repository: repo='deb https://apt.dockerproject.org/repo ubuntu-xenial main'
+
+- name: install docker and docker-tools
+  apt: name={{item}} update_cache=yes
+  with_items:
+   - docker-engine
+   - docker-compose
+ 
+- name: start/enable docker daemon
+  service: name=docker state=started enabled=yes
