@@ -8,5 +8,6 @@
     - { role: security, tags: ['security'] }
     - { role: sshd, tags: ['sshd'] }
     - { role: docker, tags: ['docker'] }
+    - { role: environment, tags: ['tools'] }
   tags:
     - install

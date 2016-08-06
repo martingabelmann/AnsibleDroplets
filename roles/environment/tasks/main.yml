@@ -1,0 +1,14 @@
+---
+
+- name: make sure zshell is installed
+  apt: name=zsh state=present
+
+- name: set zsh as default shell
+  user: name=root shell=/bin/zsh
+
+- name: clone oh-my-zsh
+  git: repo=https://github.com/robbyrussell/oh-my-zsh.git  dest=/root/.oh-my-zsh
+
+- name: copy zsh.rc
+  copy: src=.zshrc dest=/root/.zshrc
+
