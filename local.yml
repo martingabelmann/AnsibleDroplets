@@ -3,7 +3,7 @@
 - name: fresh install
   hosts: all
   roles:
-    - { role: backup-docker-volumes, tags: ['backup'] }
+    - { role: backups, tags: ['backups'] }
     - { role: packages, tags: ['packages'] }
     - { role: security, tags: ['security'] }
     - { role: sshd, tags: ['sshd'] }
