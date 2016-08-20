@@ -1,0 +1,13 @@
+#!/bin/bash
+
+{% for backup in backups %}
+
+mkdir -p "$(dirname {{backup.dest}})"
+cd "$(dirname {{backup.dest}})"
+
+echo "creating {{ backup.src }} >> {{ backup.dest }}"  >> /var/log/backup.log 2>&1
+tar -cpzf {{ backup.dest }} --ignore-command-error --one-file-system {% for excl in backup.excludes %} --exclude={{excl}} {% endfor %} {{ backup.src }} >> /var/log/backup.log 2>&1
+
+echo "removing old backups" >> /var/log/backup.log 2>&1
+find *.tar.gz -mtime +1 -exec rm {} \; >> /var/log/backup.log 2>&1
+{% endfor %}

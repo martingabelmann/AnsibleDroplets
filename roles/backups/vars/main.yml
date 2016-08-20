@@ -1,0 +1,7 @@
+---
+
+backups:
+    - src: "/srv/docker/"
+      dest: "/srv/backups/docker-$(date +%y%m%d-%H%M).tar.gz"
+      excludes:
+        - /srv/docker/owncloud9/data/backups
