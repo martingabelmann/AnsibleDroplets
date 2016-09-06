@@ -33,6 +33,7 @@
     marker: "# {mark} ANSIBLE MANAGED BLOCK"
     content: |
         [sshd]
+	backend = systemd
         enabled = true
         port    = ssh
         filter  = sshd
