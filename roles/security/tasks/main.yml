@@ -31,9 +31,9 @@
     create: yes # this is broken until ansible 2.0.2
     dest: /etc/fail2ban/jail.d/sshd.local
     marker: "# {mark} ANSIBLE MANAGED BLOCK"
-    content: |
+    block: |
         [sshd]
-	backend = systemd
+        backend = systemd
         enabled = true
         port    = ssh
         filter  = sshd
