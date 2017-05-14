@@ -11,6 +11,3 @@
 
 - name: copy zsh.rc
   copy: src=.zshrc dest=/root/.zshrc
-
-- name: copy docker cleanup script
-  copy: src=dockerclean dest=/usr/local/bin/ mode="u=rwx,g=rx,o=r"
