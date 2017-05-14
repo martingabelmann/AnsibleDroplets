@@ -16,4 +16,7 @@
   service: name=docker state=started enabled=yes
 
 - name: copy dockercleanup cron
-  copy: src=dockercleanup dest=/etc/cron.weekly/dockerclean mode="0744"
+  copy: src=dockercleanup dest="{{item}}" mode="0744"
+  with_items:
+    - "/etc/cron.weekly/dockerclean" 
+    - "/usr/local/bin/dockerclean" 
